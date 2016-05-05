@@ -14,6 +14,6 @@ public class Link {
 	}
 	
 	public int getValue() {
-		return value;
+		return v;
 	}
 }
