@@ -7,7 +7,7 @@ import java.util.ArrayList;
 * You will need to declare other variables depending on your implementation.
 */
 public class Character {
-	private final int radius = 30;
+	public final int RADIUS = 30;
 	private final int alpha = 70;
 	private MainApplet parent;
 	private boolean inCircle;
@@ -19,7 +19,7 @@ public class Character {
 	
 	
 	
-	public Character(MainApplet parent, String name, float x,  float y, int color){
+	public Character(MainApplet parent, String name, float x,  float y, String colorStr){
 
 		this.parent = parent;
 		inCircle = false;
@@ -28,16 +28,16 @@ public class Character {
 		this.originY = y;
 		this.x = x;
 		this.y = y;
-		this.color = color;
+		this.color = Integer.parseInt(colorStr.substring(3),16);
 	}
 
 	public void display(){
 		parent.stroke(0);
 		parent.fill(color, alpha);
-		parent.ellipse(x, y, radius, radius);
+		parent.ellipse(x, y, RADIUS*2, RADIUS*2);
 		parent.fill(color);
 		parent.textSize(28);
-		parent.text(name, x+radius*2+10, y);
+		parent.text(name, x+RADIUS*2+10, y);
 	}
 	
 	public void addTarget(Character c, int value) {
@@ -64,8 +64,16 @@ public class Character {
 		return x;
 	}
 	
+	public void setX(float x) {
+		this.x = x;
+	}
+	
 	public float getY() {
 		return y;
+	}
+	
+	public void setY(float y) {
+		this.y = y;
 	}
 	
 	public float getOriginX() {

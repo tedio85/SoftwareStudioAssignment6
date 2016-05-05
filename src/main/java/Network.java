@@ -11,7 +11,9 @@ import processing.core.PApplet;
 * You will need to declare other variables.
 */
 public class Network {
-	
+	public final int RADIUS = 250;
+	public final int X = 400;
+	public final int Y = 150;
 	private PApplet parent;
 	private ArrayList<Character> characters;
 
@@ -21,6 +23,21 @@ public class Network {
 	}
 
 	public void display(){
+		double angle = 2*Math.PI / characters.size();
+		double curAngle = 0;
+		double curX = X + RADIUS;
+		double curY = Y;
+		parent.stroke(204, 153, 0);
+		parent.ellipse(X, Y, RADIUS*2, RADIUS*2);
+		//change the (x, y) coordinates of the nodes
+		for(Character ch : characters) {
+			ch.setX((float)(curX*Math.cos(curAngle) - curY*Math.sin(curY)));
+			ch.setY((float)(curX*Math.sin(curAngle) + curY*Math.cos(curY)));
+		}
+		//display the nodes
+		for(Character ch: characters) {
+			ch.display();
+		}
 		
 	}
 	
