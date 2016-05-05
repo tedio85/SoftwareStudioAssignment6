@@ -2,7 +2,6 @@ package main.java;
 import processing.core.PApplet;
 import processing.data.JSONArray;
 import processing.data.JSONObject;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 /**
@@ -15,13 +14,15 @@ public class MainApplet extends PApplet {
 	private String file = "starwars-episode-%d-interactions.json";
 	private int v;
 	private String result;
-	public int ver;
+	public int ver = 1;
 	private final float gap = 100;
 	JSONObject data;
-	JSONArray[] nodes = new JSONArray[8];
-	JSONArray[] links = new JSONArray[8];
+	JSONArray nodes = new JSONArray();
+	JSONArray links = new JSONArray();
 	private ArrayList<Character> characters;
-	private ArrayList<Network> networks;
+	private Character hover_over_character, press_character;
+	private boolean over_character = false;
+	private Network network = new Network(this);
 	private final static int width = 1200, height = 650;
 	public void setup() {
 		size(width, height);
@@ -30,44 +31,97 @@ public class MainApplet extends PApplet {
 	}
 	public void draw() {
 		background(255);
+		fill(100, 50, 25);
+		text("Star Wars " + ver, 485, 50);
+		for(Character c : characters){
+			if(dist(c.getX(), c.getY(), mouseX, mouseY) < Character.Radius && !mousePressed){
+				hover_over_character = c;
+				over_character = true;
+			}
+			c.display();
+		}
 	}
 	public void mouseDragged(){
-		
+		if(press_character != null){
+			press_character.setX((float)mouseX);
+			press_character.setY((float)mouseY);
+		}
+	}
+	public void mousePressed() {
+		if(over_character){
+			press_character = hover_over_character;
+		}
+	}
+	public void mouseReleased() {
+		if(press_character != null){
+			if(dist(mouseX, mouseY, network.X, network.Y) < network.RADIUS){
+				press_character.getInCircle();
+			}else {
+				press_character.getOutCircle();
+			}
+		}
+		press_character = null;
 	}
 	public void keyPressed(){
-		if (keyCode == KeyEvent.VK_1) ver = 1;
-		else if (keyCode == KeyEvent.VK_2) ver = 2;
-		else if (keyCode == KeyEvent.VK_3) ver = 3;
-		else if (keyCode == KeyEvent.VK_4) ver = 4;
-		else if (keyCode == KeyEvent.VK_5) ver = 5;
-		else if (keyCode == KeyEvent.VK_6) ver = 6;
-		else if (keyCode == KeyEvent.VK_7) ver = 7;
+		if (keyCode == KeyEvent.VK_1 && ver != 1) {
+			ver = 1;
+			loadData();
+			network = new Network(this);
+		}
+		else if (keyCode == KeyEvent.VK_2 && ver != 2) {
+			ver = 2;
+			loadData();
+			network = new Network(this);
+		}
+		else if (keyCode == KeyEvent.VK_3 && ver != 3) {
+			ver = 3;
+			loadData();
+			network = new Network(this);
+		}
+		else if (keyCode == KeyEvent.VK_4 && ver != 4) {
+			ver = 4;
+			loadData();
+			network = new Network(this);
+		}
+		else if (keyCode == KeyEvent.VK_5 && ver != 5) {
+			ver = 5;
+			loadData();
+			network = new Network(this);
+		}
+		else if (keyCode == KeyEvent.VK_6 && ver != 6) {
+			ver = 6;
+			loadData();
+			network = new Network(this);
+		}
+		else if (keyCode == KeyEvent.VK_7 && ver != 7) {
+			ver = 7;
+			loadData();
+			network = new Network(this);
+		}
 	}
 	private void loadData(){
-		for(int i = 1; i < 8; i++){
-			v = i;
+			v = ver;
 			result = path + String.format(file, v);
 			System.out.println(result);
 			data = loadJSONObject(result);
-			nodes[i] = data.getJSONArray("nodes");
-			links[i] = data.getJSONArray("links");
-			for(int j = 0 ; j < nodes[i].size(); j++){
+			nodes = data.getJSONArray("nodes");
+			links = data.getJSONArray("links");
+			for(int j = 0 ; j < nodes.size(); j++){
 				int y = j;
 				int x = 0;
 				while(y >= 6) {
 					y = y - 6;
 					x = x + 1;
 				}
-				JSONObject temp = nodes[i].getJSONObject(j);
-				characters.add(new Character(this, temp.getString("name"),10+gap*x,10+gap*y, temp.getInt("colour")));
+				JSONObject temp = nodes.getJSONObject(j);
+				characters.add(new Character(this, temp.getString("name"),(float)10+gap*x,(float)10+gap*y, temp.getString("colour")));
 			}
-			for(int j = 0 ; j < links[i].size(); j++){
-				JSONObject temp = links[i].getJSONObject(j);
+			for(int j = 0 ; j < links.size(); j++){
+				JSONObject temp = links.getJSONObject(j);
 				int source = temp.getInt("source");
 				int target = temp.getInt("target");
 				int value = temp.getInt("value");
 				characters.get(source).addTarget(characters.get(target),value);
 			}
-		}
 	}
 }
