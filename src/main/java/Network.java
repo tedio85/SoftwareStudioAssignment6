@@ -16,6 +16,7 @@ public class Network {
 
 		this.parent = parent;
 		
+		
 	}
 
 	public void display(){
