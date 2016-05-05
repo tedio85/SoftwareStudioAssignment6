@@ -1,5 +1,7 @@
 package main.java;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 
 /**
@@ -11,16 +13,19 @@ import processing.core.PApplet;
 public class Network {
 	
 	private PApplet parent;
+	private ArrayList<Character> characters;
 
-	public Network(PApplet parent){
-
+	public Network(PApplet parent) {
 		this.parent = parent;
-		
-		
+		characters = new ArrayList<Character>();
 	}
 
 	public void display(){
 		
+	}
+	
+	public void addToCircle(Character c) {
+		characters.add(c);
 	}
 	
 }

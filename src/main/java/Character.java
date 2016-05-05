@@ -1,6 +1,6 @@
 package main.java;
 
-import processing.core.PApplet;
+import java.util.ArrayList;
 
 /**
 * This class is used to store states of the characters in the program.
@@ -15,6 +15,7 @@ public class Character {
 	private float originX, originY;
 	private int color;
 	private String name;
+	private ArrayList<Link> targets;
 	
 	
 	
@@ -37,6 +38,14 @@ public class Character {
 		parent.fill(color);
 		parent.textSize(28);
 		parent.text(name, x+radius*2+10, y);
+	}
+	
+	public void addTarget(Character c, int value) {
+		targets.add(new Link(c, value));
+	}
+	
+	public ArrayList<Link> getTarget() {
+		return targets;
 	}
 	
 	public void getInCircle() {
