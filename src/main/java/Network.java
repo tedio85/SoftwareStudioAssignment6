@@ -33,16 +33,32 @@ public class Network {
 		for(Character ch : characters) {
 			ch.setX((float)(curX*Math.cos(curAngle) - curY*Math.sin(curY)));
 			ch.setY((float)(curX*Math.sin(curAngle) + curY*Math.cos(curY)));
+			curAngle += angle;
 		}
-		//display the nodes
+		//display the links
+		parent.stroke(0);
 		for(Character ch: characters) {
-			ch.display();
+			for(Link link : ch.getTarget()) {
+				parent.strokeWeight(link.getValue()/5);
+				parent.curve(	ch.getX(), ch.getY(),
+									 	ch.getX(), ch.getY(),
+									 	(float) (this.X+RADIUS), (float)(this.Y+RADIUS),
+									 	link.getCharacter().getX(), link.getCharacter().getY());
+			}
+				ch.display();	
 		}
 		
 	}
 	
 	public void addToCircle(Character c) {
+		c.getInCircle();
 		characters.add(c);
 	}
 	
+	public void removeFromCircle(Character c) {
+		if(characters.contains(c)) {
+			c.getOutCircle();
+			characters.remove(c);
+		}
+	}
 }
