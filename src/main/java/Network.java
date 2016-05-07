@@ -45,11 +45,14 @@ public class Network {
 		parent.stroke(0);
 		for(Character ch: characters) {
 			for(Link link : ch.getTarget()) {
-				parent.strokeWeight(link.getValue()/5);
-				parent.curve(	ch.getX(), ch.getY(),
-									 	ch.getX(), ch.getY(),
-									 	(float) this.X, (float)this.Y,
-									 	link.getCharacter().getX(), link.getCharacter().getY());
+				if(link.getCharacter().inCircle() == true) {
+					parent.noFill();
+					parent.strokeWeight(link.getValue());
+					parent.curve(ch.getX(), ch.getY(),
+										 	ch.getX(), ch.getY(),
+										 	(float)X, (float)Y,
+										 	link.getCharacter().getX(), link.getCharacter().getY());
+				}
 			}
 				ch.display();	
 		}
@@ -57,8 +60,10 @@ public class Network {
 	}
 	
 	public void addToCircle(Character c) {
-		c.getInCircle();
-		characters.add(c);
+		if(!characters.contains(c)) {
+			c.getInCircle();
+			characters.add(c);
+		}
 	}
 	
 	public void removeFromCircle(Character c) {

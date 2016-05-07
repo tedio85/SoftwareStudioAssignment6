@@ -8,7 +8,7 @@ import java.util.ArrayList;
 */
 public class Character {
 	public final int RADIUS = 30;
-	private final int alpha = 70;
+	private final int alpha = 150;
 	private MainApplet parent;
 	private boolean inCircle;
 	private boolean showName;
@@ -36,6 +36,7 @@ public class Character {
 
 	public void display(){
 		parent.stroke(0);
+		parent.noStroke();
 		parent.fill(color, alpha);
 		parent.ellipse(x, y, RADIUS*2, RADIUS*2);
 		parent.fill(color);
