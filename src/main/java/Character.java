@@ -11,6 +11,7 @@ public class Character {
 	private final int alpha = 70;
 	private MainApplet parent;
 	private boolean inCircle;
+	private boolean showName;
 	private float x, y;
 	private float originX, originY;
 	private int color;
@@ -23,6 +24,7 @@ public class Character {
 		
 		this.parent = parent;
 		inCircle = false;
+		showName = false;
 		this.name = name;
 		this.originX = x;
 		this.originY = y;
@@ -37,8 +39,10 @@ public class Character {
 		parent.fill(color, alpha);
 		parent.ellipse(x, y, RADIUS*2, RADIUS*2);
 		parent.fill(color);
-		parent.textSize(28);
-		parent.text(name, x+RADIUS*2+10, y);
+		if(showName) {
+			parent.textSize(28);
+			parent.text(name, x+RADIUS*2+10, y);
+		}
 	}
 	
 	public void addTarget(Character c, int value) {
@@ -83,5 +87,13 @@ public class Character {
 	
 	public float getOriginY() {
 		return originY;
+	}
+	
+	public void showName() {
+		showName = true;
+	}
+	
+	public void hideName() {
+		showName = false;
 	}
 }
