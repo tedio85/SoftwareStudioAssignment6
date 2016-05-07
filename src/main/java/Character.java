@@ -28,7 +28,7 @@ public class Character {
 		this.originY = y;
 		this.x = x;
 		this.y = y;
-		this.color = Integer.parseInt(colorStr.substring(3),16);
+		this.color =(int) Long.parseLong(colorStr.substring(1),16);
 		this.targets = new ArrayList<Link>();
 	}
 
