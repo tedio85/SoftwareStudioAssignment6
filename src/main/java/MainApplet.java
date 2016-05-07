@@ -17,7 +17,7 @@ public class MainApplet extends PApplet {
 	private int v;
 	private String result;
 	public int ver = 1;
-	private final float gap = 80;
+	private final float gap = 75;
 	JSONObject data;
 	JSONArray nodes = new JSONArray();
 	JSONArray links = new JSONArray();
