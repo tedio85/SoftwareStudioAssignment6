@@ -4,6 +4,8 @@ import processing.data.JSONArray;
 import processing.data.JSONObject;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import controlP5.ControlP5;
 /**
 * This class is for sketching outcome using Processing
 * You can do major UI control and some visualization in this class.  
@@ -24,10 +26,32 @@ public class MainApplet extends PApplet {
 	private boolean over_character = false;
 	private Network network = new Network(this);
 	private final static int width = 1200, height = 650;
+	private ControlP5 cp5;
 	public void setup() {
 		size(width, height);
 		smooth();
 		loadData();
+		cp5 = new ControlP5(this);
+		cp5.addButton("buttonA")
+		.setLabel("ADD ALL")
+		.setPosition(3*width/4, 2*height/3)
+		.setSize(200, 50);
+		cp5.addButton("buttonB")
+		.setLabel("CLEAR")
+		.setPosition(3*width/4, 2*height/3+70)
+		.setSize(200, 50);
+	}
+	public void buttonA(){
+		for(Character c:characters){
+			c.getInCircle();
+			network.addToCircle(c);
+		}
+	}
+	public void buttonB(){
+		for(Character c:characters){
+			c.getOutCircle();
+			network.removeFromCircle(c);
+		}
 	}
 	public void draw() {
 		background(255);
@@ -38,8 +62,9 @@ public class MainApplet extends PApplet {
 				hover_over_character = c;
 				over_character = true;
 			}
-			c.display();
+			if(c.inCircle() == false)	c.display();
 		}
+		network.display();
 	}
 	public void mouseDragged(){
 		if(press_character != null){
@@ -102,7 +127,7 @@ public class MainApplet extends PApplet {
 	private void loadData(){
 			v = ver;
 			result = path + String.format(file, v);
-			System.out.println(result);
+			//System.out.println(result);
 			data = loadJSONObject(result);
 			nodes = data.getJSONArray("nodes");
 			links = data.getJSONArray("links");
