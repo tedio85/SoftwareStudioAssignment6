@@ -50,8 +50,14 @@ public class MainApplet extends PApplet {
 	public void buttonB(){
 		for(Character c:characters){
 			c.getOutCircle();
+			
 			network.removeFromCircle(c);
 		}
+		for(Character c:characters){
+			c.setX(c.getOriginX());
+			c.setY(c.getOriginY());
+		}
+		
 	}
 	public void draw() {
 		background(255);
