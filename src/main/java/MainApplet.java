@@ -45,20 +45,14 @@ public class MainApplet extends PApplet {
 	public void buttonA(){
 		//button A's function is add all character which is not in the circle
 		for(Character c:characters){
-			if(c.inCircle()==false){
-				//c.getInCircle();
 				network.addToCircle(c);
-			}
 		}
 	}
 	public void buttonB(){
 		//button B's function is to remove all character within the circle
 		//and put them back to their original spot
 		for(Character c:characters){
-			if(c.inCircle() ==true){
-				//c.getOutCircle();
 				network.removeFromCircle(c);
-			}
 		}
 		for(Character c:characters){
 			c.setX(c.getOriginX());
