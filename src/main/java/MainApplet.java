@@ -46,7 +46,7 @@ public class MainApplet extends PApplet {
 		//button A's function is add all character which is not in the circle
 		for(Character c:characters){
 			if(c.inCircle()==false){
-				c.getInCircle();
+				//c.getInCircle();
 				network.addToCircle(c);
 			}
 		}
@@ -56,7 +56,7 @@ public class MainApplet extends PApplet {
 		//and put them back to their original spot
 		for(Character c:characters){
 			if(c.inCircle() ==true){
-				c.getOutCircle();
+				//c.getOutCircle();
 				network.removeFromCircle(c);
 			}
 		}
@@ -116,12 +116,12 @@ public class MainApplet extends PApplet {
 		//if no, put it back to its original place and get it out of network
 		if(press_character != null){
 			if(dist(mouseX, mouseY, network.X, network.Y) < network.RADIUS){
-				press_character.getInCircle();
+				//press_character.getInCircle();
 				network.addToCircle(press_character);
 			}else {
 				press_character.setX(press_character.getOriginX());
 				press_character.setY(press_character.getOriginY());
-				press_character.getOutCircle();
+				//press_character.getOutCircle();
 				network.removeFromCircle(press_character);
 			}
 		}
