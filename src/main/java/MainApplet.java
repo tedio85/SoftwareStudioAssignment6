@@ -95,6 +95,7 @@ public class MainApplet extends PApplet {
 				press_character.setX(press_character.getOriginX());
 				press_character.setY(press_character.getOriginY());
 				press_character.getOutCircle();
+				network.removeFromCircle(press_character);
 			}
 		}
 		press_character = null;
