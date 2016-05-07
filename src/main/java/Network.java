@@ -13,7 +13,7 @@ import processing.core.PApplet;
 public class Network {
 	public final int RADIUS = 250;
 	public final int X = 800;
-	public final int Y = 200;
+	public final int Y = 300;
 	private PApplet parent;
 	private ArrayList<Character> characters;
 
@@ -47,9 +47,9 @@ public class Network {
 			for(Link link : ch.getTarget()) {
 				if(link.getCharacter().inCircle() == true) {
 					parent.noFill();
-					parent.strokeWeight(link.getValue());
-					parent.curve(ch.getX(), ch.getY(),
-										 	ch.getX(), ch.getY(),
+					parent.strokeWeight(link.getValue()/5+1);
+					parent.bezier(ch.getX(), ch.getY(),
+										 	(float)X, (float)Y,
 										 	(float)X, (float)Y,
 										 	link.getCharacter().getX(), link.getCharacter().getY());
 				}
