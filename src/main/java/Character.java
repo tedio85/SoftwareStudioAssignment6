@@ -41,7 +41,7 @@ public class Character {
 		parent.fill(color);
 		if(showName) {
 			parent.textSize(28);
-			parent.text(name, x+RADIUS*2+10, y);
+			parent.text(name, x+RADIUS+10+10, y+5);
 		}
 	}
 	
