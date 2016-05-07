@@ -25,16 +25,20 @@ public class Network {
 	public void display(){
 		double angle = 2*Math.PI / characters.size();
 		double curAngle = 0;
-		double curX = X + RADIUS;
-		double curY = Y;
+		double curX = X + RADIUS*2;
+		double curY = Y + RADIUS;
+		double cX = X + RADIUS;
+		double cY = Y + RADIUS ;
 		parent.stroke(204, 153, 0);
 		parent.strokeWeight(4);
-		parent.fill(255);
+		parent.fill(255,0);
 		parent.ellipse(X, Y, RADIUS*2, RADIUS*2);
 		//change the (x, y) coordinates of the nodes
 		for(Character ch : characters) {
-			ch.setX((float)(curX*Math.cos(curAngle) - curY*Math.sin(curY)));
-			ch.setY((float)(curX*Math.sin(curAngle) + curY*Math.cos(curY)));
+			double shiftedX = curX - cX;
+			double shiftedY = curY - cY;
+			ch.setX((float)(shiftedX*Math.cos(curAngle) - shiftedY*Math.sin(curAngle)+cX));
+			ch.setY((float)(shiftedX*Math.sin(curAngle) + shiftedY*Math.cos(curAngle)+cY));
 			curAngle += angle;
 		}
 		//display the links
