@@ -37,8 +37,8 @@ public class Network {
 		for(Character ch : characters) {
 			double shiftedX = curX - cX;
 			double shiftedY = curY - cY;
-			ch.setX((float)(shiftedX*Math.cos(curAngle) - shiftedY*Math.sin(curAngle)+cX));
-			ch.setY((float)(shiftedX*Math.sin(curAngle) + shiftedY*Math.cos(curAngle)+cY));
+			ch.setX((float)(shiftedX*Math.cos(curAngle) - shiftedY*Math.sin(curAngle)+X));
+			ch.setY((float)(shiftedX*Math.sin(curAngle) + shiftedY*Math.cos(curAngle)+Y));
 			curAngle += angle;
 		}
 		//display the links
@@ -48,7 +48,7 @@ public class Network {
 				parent.strokeWeight(link.getValue()/5);
 				parent.curve(	ch.getX(), ch.getY(),
 									 	ch.getX(), ch.getY(),
-									 	(float) (this.X+RADIUS), (float)(this.Y+RADIUS),
+									 	(float) this.X, (float)this.Y,
 									 	link.getCharacter().getX(), link.getCharacter().getY());
 			}
 				ch.display();	
