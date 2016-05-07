@@ -21,7 +21,7 @@ public class MainApplet extends PApplet {
 	JSONObject data;
 	JSONArray nodes = new JSONArray();
 	JSONArray links = new JSONArray();
-	private ArrayList<Character> characters = new ArrayList<Character>();
+	private ArrayList<Character> characters;
 	private Character hover_over_character, press_character;
 	private boolean over_character = false;
 	private Network network = new Network(this);
@@ -94,6 +94,7 @@ public class MainApplet extends PApplet {
 			ver = 1;
 			loadData();
 			network = new Network(this);
+			
 		}
 		else if (keyCode == KeyEvent.VK_2 && ver != 2) {
 			ver = 2;
@@ -127,6 +128,7 @@ public class MainApplet extends PApplet {
 		}
 	}
 	private void loadData(){
+			characters = new ArrayList<Character>();
 			v = ver;
 			result = path + String.format(file, v);
 			System.out.println(result);
