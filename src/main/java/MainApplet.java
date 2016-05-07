@@ -17,7 +17,7 @@ public class MainApplet extends PApplet {
 	private int v;
 	private String result;
 	public int ver = 1;
-	private final float gap = 100;
+	private final float gap = 80;
 	JSONObject data;
 	JSONArray nodes = new JSONArray();
 	JSONArray links = new JSONArray();
@@ -34,11 +34,11 @@ public class MainApplet extends PApplet {
 		cp5 = new ControlP5(this);
 		cp5.addButton("buttonA")
 		.setLabel("ADD ALL")
-		.setPosition(3*width/4, 2*height/3)
+		.setPosition(3*width/4+50, 2*height/3)
 		.setSize(200, 50);
 		cp5.addButton("buttonB")
 		.setLabel("CLEAR")
-		.setPosition(3*width/4, 2*height/3+70)
+		.setPosition(3*width/4+50, 2*height/3+70)
 		.setSize(200, 50);
 	}
 	public void buttonA(){
@@ -82,6 +82,8 @@ public class MainApplet extends PApplet {
 			if(dist(mouseX, mouseY, network.X, network.Y) < network.RADIUS){
 				press_character.getInCircle();
 			}else {
+				press_character.setX(press_character.getOriginX());
+				press_character.setY(press_character.getOriginY());
 				press_character.getOutCircle();
 			}
 		}
@@ -134,14 +136,14 @@ public class MainApplet extends PApplet {
 			for(int j = 0 ; j < nodes.size(); j++){
 				int y = j;
 				int x = 0;
-				while(y >= 6) {
-					y = y - 6;
+				while(y >= 8) {
+					y = y - 8;
 					x = x + 1;
 				}
 				JSONObject temp = nodes.getJSONObject(j);
 				//System.out.println(temp.getString("name"));
 				//System.out.println(temp.getString("colour"));
-				characters.add(new Character(this, temp.getString("name"),(float)10+gap*x,(float)10+gap*y, temp.getString("colour")));
+				characters.add(new Character(this, temp.getString("name"),(float)40+gap*x,(float)40+gap*y, temp.getString("colour")));
 			}
 			for(int j = 0 ; j < links.size(); j++){
 				JSONObject temp = links.getJSONObject(j);
