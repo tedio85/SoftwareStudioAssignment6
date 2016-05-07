@@ -12,8 +12,8 @@ import processing.core.PApplet;
 */
 public class Network {
 	public final int RADIUS = 250;
-	public final int X = 400;
-	public final int Y = 150;
+	public final int X = 800;
+	public final int Y = 200;
 	private PApplet parent;
 	private ArrayList<Character> characters;
 
@@ -28,7 +28,8 @@ public class Network {
 		double curX = X + RADIUS;
 		double curY = Y;
 		parent.stroke(204, 153, 0);
-		parent.fill(0);
+		parent.strokeWeight(4);
+		parent.fill(255);
 		parent.ellipse(X, Y, RADIUS*2, RADIUS*2);
 		//change the (x, y) coordinates of the nodes
 		for(Character ch : characters) {
