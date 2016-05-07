@@ -43,15 +43,18 @@ public class MainApplet extends PApplet {
 	}
 	public void buttonA(){
 		for(Character c:characters){
-			c.getInCircle();
-			network.addToCircle(c);
+			if(c.inCircle()==false){
+				c.getInCircle();
+				network.addToCircle(c);
+			}
 		}
 	}
 	public void buttonB(){
 		for(Character c:characters){
-			c.getOutCircle();
-			
-			network.removeFromCircle(c);
+			if(c.inCircle() ==true){
+				c.getOutCircle();
+				network.removeFromCircle(c);
+			}
 		}
 		for(Character c:characters){
 			c.setX(c.getOriginX());
