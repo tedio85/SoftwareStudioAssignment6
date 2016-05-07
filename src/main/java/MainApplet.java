@@ -67,9 +67,11 @@ public class MainApplet extends PApplet {
 		fill(100, 50, 25);
 		text("Star Wars " + ver, 485, 50);
 		for(Character c : characters){
+				c.hideName();
 			if(dist(c.getX(), c.getY(), mouseX, mouseY) < c.RADIUS && !mousePressed){
 				hover_over_character = c;
 				over_character = true;
+				hover_over_character.showName();
 			}
 			if(c.inCircle() == false)	c.display();
 		}
