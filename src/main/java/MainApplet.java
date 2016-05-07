@@ -90,6 +90,7 @@ public class MainApplet extends PApplet {
 		if(press_character != null){
 			if(dist(mouseX, mouseY, network.X, network.Y) < network.RADIUS){
 				press_character.getInCircle();
+				network.addToCircle(press_character);
 			}else {
 				press_character.setX(press_character.getOriginX());
 				press_character.setY(press_character.getOriginY());
