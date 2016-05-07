@@ -28,6 +28,7 @@ public class Network {
 		double curX = X + RADIUS;
 		double curY = Y;
 		parent.stroke(204, 153, 0);
+		parent.fill(0);
 		parent.ellipse(X, Y, RADIUS*2, RADIUS*2);
 		//change the (x, y) coordinates of the nodes
 		for(Character ch : characters) {

@@ -20,7 +20,7 @@ public class Character {
 	
 	
 	public Character(MainApplet parent, String name, float x,  float y, String colorStr){
-
+		
 		this.parent = parent;
 		inCircle = false;
 		this.name = name;
@@ -29,6 +29,7 @@ public class Character {
 		this.x = x;
 		this.y = y;
 		this.color = Integer.parseInt(colorStr.substring(3),16);
+		this.targets = new ArrayList<Link>();
 	}
 
 	public void display(){
