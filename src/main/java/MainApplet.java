@@ -21,7 +21,7 @@ public class MainApplet extends PApplet {
 	JSONObject data;
 	JSONArray nodes = new JSONArray();
 	JSONArray links = new JSONArray();
-	private ArrayList<Character> characters;
+	private ArrayList<Character> characters = new ArrayList<Character>();
 	private Character hover_over_character, press_character;
 	private boolean over_character = false;
 	private Network network = new Network(this);
@@ -127,7 +127,7 @@ public class MainApplet extends PApplet {
 	private void loadData(){
 			v = ver;
 			result = path + String.format(file, v);
-			//System.out.println(result);
+			System.out.println(result);
 			data = loadJSONObject(result);
 			nodes = data.getJSONArray("nodes");
 			links = data.getJSONArray("links");
@@ -139,6 +139,8 @@ public class MainApplet extends PApplet {
 					x = x + 1;
 				}
 				JSONObject temp = nodes.getJSONObject(j);
+				//System.out.println(temp.getString("name"));
+				//System.out.println(temp.getString("colour"));
 				characters.add(new Character(this, temp.getString("name"),(float)10+gap*x,(float)10+gap*y, temp.getString("colour")));
 			}
 			for(int j = 0 ; j < links.size(); j++){
