@@ -47,6 +47,7 @@ public class Network {
 			for(Link link : ch.getTarget()) {
 				if(link.getCharacter().inCircle() == true) {
 					parent.noFill();
+					parent.stroke(0);
 					parent.strokeWeight(link.getValue()/5+1);
 					parent.bezier(ch.getX(), ch.getY(),
 										 	(ch.getX()+X)/2, (ch.getY()+Y)/2,
