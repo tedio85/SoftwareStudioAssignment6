@@ -49,8 +49,8 @@ public class Network {
 					parent.noFill();
 					parent.strokeWeight(link.getValue()/5+1);
 					parent.bezier(ch.getX(), ch.getY(),
-										 	(float)X, (float)Y,
-										 	(float)X, (float)Y,
+										 	(ch.getX()+X)/2, (ch.getY()+Y)/2,
+										 	(link.getCharacter().getX()+X)/2, (link.getCharacter().getY()+Y)/2,
 										 	link.getCharacter().getX(), link.getCharacter().getY());
 				}
 			}
