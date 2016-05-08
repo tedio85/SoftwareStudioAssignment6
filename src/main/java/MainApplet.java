@@ -22,7 +22,7 @@ public class MainApplet extends PApplet {
 	JSONArray nodes = new JSONArray();
 	JSONArray links = new JSONArray();
 	private ArrayList<Character> characters;
-	private Character hover_over_character, press_character;
+	private static Character hover_over_character, press_character;
 	private boolean over_character = false;
 	private Network network = new Network(this);
 	private final static int width = 1200, height = 650;
@@ -71,6 +71,8 @@ public class MainApplet extends PApplet {
 		//to show its name
 		//all character not within the circle will be displayed to the side as default
 		//and all character within the circle will be displayed by network.display()
+		over_character = false;
+		hover_over_character = null;
 		background(255);
 		fill(100, 50, 25);
 		text("Star Wars " + ver, 485, 50);
@@ -91,6 +93,7 @@ public class MainApplet extends PApplet {
 		//save a press_character for the mouse_dragged event
 		if(over_character){
 			press_character = hover_over_character;
+			over_character = false;
 		}
 	}
 	public void mouseDragged(){
@@ -110,16 +113,15 @@ public class MainApplet extends PApplet {
 		//if no, put it back to its original place and get it out of network
 		if(press_character != null){
 			if(dist(mouseX, mouseY, network.X, network.Y) < network.RADIUS){
-				//press_character.getInCircle();
 				network.addToCircle(press_character);
 			}else {
+				network.removeFromCircle(press_character);
 				press_character.setX(press_character.getOriginX());
 				press_character.setY(press_character.getOriginY());
-				//press_character.getOutCircle();
-				network.removeFromCircle(press_character);
 			}
 		}
 		press_character = null;
+		hover_over_character = null;
 	}
 	public void keyPressed(){
 		//easy stuff
@@ -196,5 +198,9 @@ public class MainApplet extends PApplet {
 				int value = temp.getInt("value");
 				characters.get(source).addTarget(characters.get(target),value);
 			}
+	}
+	
+	public static Character getPressCharacter() {
+		return press_character;
 	}
 }

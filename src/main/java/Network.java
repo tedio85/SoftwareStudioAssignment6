@@ -13,7 +13,7 @@ import processing.core.PApplet;
 */
 public class Network {
 	public final int RADIUS = 250;		//radius of the large circle
-	public final int X = 800;					//x coordinate of the center
+	public final int X = 700;					//x coordinate of the center
 	public final int Y = 300;					//y coordinate of the center
 	private PApplet parent;
 	private ArrayList<Character> characters;		//characters in the circle
@@ -37,11 +37,13 @@ public class Network {
 		parent.ellipse(X, Y, RADIUS*2, RADIUS*2);			//draw the circle
 		//change the (x, y) coordinates of the nodes
 		for(Character ch : characters) {								//set the x,y coordinate of all points in circle
-			double shiftedX = curX - cX;
-			double shiftedY = curY - cY;
-			ch.setX((float)(shiftedX*Math.cos(curAngle) - shiftedY*Math.sin(curAngle)+X));
-			ch.setY((float)(shiftedX*Math.sin(curAngle) + shiftedY*Math.cos(curAngle)+Y));
-			curAngle += angle;
+			if(ch != MainApplet.getPressCharacter()) {
+				double shiftedX = curX - cX;
+				double shiftedY = curY - cY;
+				ch.setX((float)(shiftedX*Math.cos(curAngle) - shiftedY*Math.sin(curAngle)+X));
+				ch.setY((float)(shiftedX*Math.sin(curAngle) + shiftedY*Math.cos(curAngle)+Y));
+				curAngle += angle;
+			}
 		}
 		//display the links
 		parent.stroke(0);

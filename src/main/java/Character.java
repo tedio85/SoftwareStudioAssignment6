@@ -97,4 +97,8 @@ public class Character {
 	public void hideName() {
 		showName = false;
 	}
+	
+	public String getName() {
+		return name;
+	}
 }
