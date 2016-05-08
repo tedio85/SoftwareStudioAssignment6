@@ -5,9 +5,9 @@
 + Even you followed the design TA shown in the video, you still have to explain the control of the program in the next section.
 
 ## Explanation of the Design
-load data is the same as done in lab, but when connecting source to target, also include the value of source and target
-when 1~7 is pressed, the version will change and all will be renew, you cannot change to the same version
-when hover over a character, it will be save to a node, and if pressed and node is not null, then it will be saved to another node, in this way we can determine whether a character is hovered, pressed, or dragged
++load data is the same as done in lab, but when connecting source to target, also include the value of source and target
++when 1~7 is pressed, the version will change and all will be renew, you cannot change to the same version
++when hover over a character, it will be save to a node, and if pressed and node is not null, then it will be saved to another node, in this way we can determine whether a character is hovered, pressed, or dragged
 
 ### Operation (same)
 + Clicking on the button "Add All": users can add all the characters into network to be analyzed.
