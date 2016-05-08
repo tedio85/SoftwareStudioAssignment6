@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.ArrayList;
 
+import de.looksgood.ani.Ani;
 import processing.core.PApplet;
 
 /**
@@ -20,6 +21,7 @@ public class Network {
 	public Network(PApplet parent) {
 		this.parent = parent;
 		characters = new ArrayList<Character>();
+		Ani.init(parent);
 	}
 
 	public void display(){
@@ -71,6 +73,8 @@ public class Network {
 		if(characters.contains(c)) {
 			c.getOutCircle();
 			characters.remove(c);
+			Ani.to(c, (float) 1, "x", c.getOriginX());
+			Ani.to(c, (float) 1, "y", c.getOriginY());
 		}
 	}
 }
