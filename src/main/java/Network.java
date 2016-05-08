@@ -11,11 +11,11 @@ import processing.core.PApplet;
 * You will need to declare other variables.
 */
 public class Network {
-	public final int RADIUS = 250;
-	public final int X = 800;
-	public final int Y = 300;
+	public final int RADIUS = 250;		//radius of the large circle
+	public final int X = 800;					//x coordinate of the center
+	public final int Y = 300;					//y coordinate of the center
 	private PApplet parent;
-	private ArrayList<Character> characters;
+	private ArrayList<Character> characters;		//characters in the circle
 
 	public Network(PApplet parent) {
 		this.parent = parent;
@@ -23,18 +23,18 @@ public class Network {
 	}
 
 	public void display(){
-		double angle = 2*Math.PI / characters.size();
-		double curAngle = 0;
-		double curX = X + RADIUS*2;
-		double curY = Y + RADIUS;
+		double angle = 2*Math.PI / characters.size();		//angle between two characters
+		double curAngle = 0;												//current angle rotated
+		double curX = X + RADIUS*2;								//x coordinate of the first point to be put on circle
+		double curY = Y + RADIUS;									//y coordinate of the first point to be put on circle
 		double cX = X + RADIUS;
 		double cY = Y + RADIUS ;
 		parent.stroke(204, 153, 0);
 		parent.strokeWeight(4);
 		parent.fill(255,0);
-		parent.ellipse(X, Y, RADIUS*2, RADIUS*2);
+		parent.ellipse(X, Y, RADIUS*2, RADIUS*2);			//draw the circle
 		//change the (x, y) coordinates of the nodes
-		for(Character ch : characters) {
+		for(Character ch : characters) {								//set the x,y coordinate of all points in circle
 			double shiftedX = curX - cX;
 			double shiftedY = curY - cY;
 			ch.setX((float)(shiftedX*Math.cos(curAngle) - shiftedY*Math.sin(curAngle)+X));
@@ -60,14 +60,14 @@ public class Network {
 		
 	}
 	
-	public void addToCircle(Character c) {
+	public void addToCircle(Character c) {			//add to the network
 		if(!characters.contains(c)) {
 			c.getInCircle();
 			characters.add(c);
 		}
 	}
 	
-	public void removeFromCircle(Character c) {
+	public void removeFromCircle(Character c) {		//remove from the network
 		if(characters.contains(c)) {
 			c.getOutCircle();
 			characters.remove(c);

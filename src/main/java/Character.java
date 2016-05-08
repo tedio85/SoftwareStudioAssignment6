@@ -7,14 +7,14 @@ import java.util.ArrayList;
 * You will need to declare other variables depending on your implementation.
 */
 public class Character {
-	public final int RADIUS = 30;
-	private final int alpha = 150;
+	public final int RADIUS = 30;				//radius of each character disk
+	private final int alpha = 150;				//transparency of each disk
 	private MainApplet parent;
-	private boolean inCircle;
-	private boolean showName;
-	private float x, y;
-	private float originX, originY;
-	private int color;
+	private boolean inCircle;					//if the character is in the network
+	private boolean showName;				//can show the name or not
+	private float x, y;									//x, y coordinate
+	private float originX, originY;				//the x, y coordinate when character is not in circle
+	private int color;									
 	private String name;
 	private ArrayList<Link> targets;
 	
@@ -34,7 +34,7 @@ public class Character {
 		this.targets = new ArrayList<Link>();
 	}
 
-	public void display(){
+	public void display(){					//show the character
 		parent.stroke(0);
 		parent.noStroke();
 		parent.fill(color, alpha);
@@ -46,7 +46,7 @@ public class Character {
 		}
 	}
 	
-	public void addTarget(Character c, int value) {
+	public void addTarget(Character c, int value) {		//add target 
 		targets.add(new Link(c, value));
 	}
 	
